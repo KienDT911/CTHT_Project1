@@ -58,8 +58,10 @@ body {
     width: 320px;
     height: 200px;
     z-index: 100;
-    cursor: pointer;
+    cursor: pointer !important;
     background: transparent;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .envelope {
@@ -231,6 +233,8 @@ body {
     padding: 30px 20px;
     transform: translateY(50px);
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all 0.8s ease;
     z-index: 5;
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -239,6 +243,8 @@ body {
 .letter.show {
     transform: translateY(-50px);
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .letter-content {
