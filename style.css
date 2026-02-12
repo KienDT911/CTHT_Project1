@@ -515,6 +515,86 @@ body {
     }
 }
 
+/* Letter Section with Photos */
+.letter-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin-bottom: 80px;
+}
+
+.photos-left,
+.photos-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.photo {
+    width: 180px;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 4px solid white;
+    background: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: photoFadeIn 0.8s ease both;
+}
+
+.photos-left .photo:nth-child(1) { animation-delay: 0.3s; }
+.photos-left .photo:nth-child(2) { animation-delay: 0.5s; }
+.photos-right .photo:nth-child(1) { animation-delay: 0.7s; }
+.photos-right .photo:nth-child(2) { animation-delay: 0.9s; }
+
+@keyframes photoFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.photo:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.photos-left .photo:nth-child(1) {
+    transform: rotate(-3deg);
+}
+
+.photos-left .photo:nth-child(2) {
+    transform: rotate(2deg);
+}
+
+.photos-right .photo:nth-child(1) {
+    transform: rotate(3deg);
+}
+
+.photos-right .photo:nth-child(2) {
+    transform: rotate(-2deg);
+}
+
+.photos-left .photo:nth-child(1):hover,
+.photos-left .photo:nth-child(2):hover,
+.photos-right .photo:nth-child(1):hover,
+.photos-right .photo:nth-child(2):hover {
+    transform: scale(1.1) rotate(0deg);
+}
+
 /* Love Letter Popup */
 .love-letter-popup {
     position: relative;
@@ -730,6 +810,23 @@ body {
         font-size: 22px;
     }
     
+    .letter-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .photos-left,
+    .photos-right {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .photo {
+        width: 140px;
+        max-height: 220px;
+    }
+    
     .love-letter-popup {
         width: 95%;
         padding: 20px;
@@ -873,6 +970,16 @@ body {
     .floating-heart {
         font-size: 20px;
     }
+    
+    .photo {
+        width: 120px;
+        max-height: 180px;
+    }
+    
+    .letter-section {
+        gap: 15px;
+        padding: 10px;
+    }
 }
 
 @media (max-width: 400px) {
@@ -943,5 +1050,15 @@ body {
     
     .love-message {
         font-size: 12px;
+    }
+    
+    .photo {
+        width: 100px;
+        max-height: 150px;
+    }
+    
+    .photos-left,
+    .photos-right {
+        gap: 10px;
     }
 }
