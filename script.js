@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const envelope = document.getElementById('envelope');
     const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const envelopeClickArea = document.getElementById('envelopeClickArea');
     const letter = document.getElementById('letter');
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
@@ -25,14 +26,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Open envelope on click - listen on both wrapper and envelope
-    envelopeWrapper.addEventListener('click', openEnvelope);
-    envelope.addEventListener('click', openEnvelope);
+    // Open envelope on click - listen on the click area overlay
+    envelopeClickArea.addEventListener('click', openEnvelope);
     
     // Yes button - go to Valentine's page with love letter
     yesBtn.addEventListener('click', function() {
         valentinePage.classList.add('show');
         createConfetti();
+        
+        // Auto-scroll slowly through the page to the love letter
+        setTimeout(() => {
+            const loveLetter = document.getElementById('loveLetter');
+            const scrollDuration = 8000; // 8 seconds to scroll
+            const start = valentinePage.scrollTop;
+            const end = loveLetter.offsetTop - 50;
+            const startTime = performance.now();
+            
+            function smoothScroll(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / scrollDuration, 1);
+                
+                // Ease-in-out function for smooth scrolling
+                const easeProgress = progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                
+                valentinePage.scrollTop = start + (end - start) * easeProgress;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(smoothScroll);
+                }
+            }
+            
+            requestAnimationFrame(smoothScroll);
+        }, 1500); // Start scrolling after 1.5 seconds
     });
     
     // No button - shrink and change text
@@ -47,36 +74,36 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (noClickCount === 1) {
             // First click - make No smaller, change text
-            noBtn.textContent = 'No (Are you sure?)';
+            noBtn.textContent = 'ko (vợ chắc chưa?)';
             noBtn.style.padding = '8px 15px';
             noBtn.style.fontSize = '12px';
-            yesBtn.textContent = 'Yes!! 💖💖';
+            yesBtn.textContent = 'Có chứ chồng iu!! 💖💖';
         } else if (noClickCount === 2) {
             // Second click - make No even smaller
-            noBtn.textContent = "No (you don't love me huh???)";
+            noBtn.textContent = "ko (vợ không yêu em hả???)";
             noBtn.style.padding = '5px 10px';
             noBtn.style.fontSize = '9px';
             noBtn.style.opacity = '0.7';
-            yesBtn.textContent = 'YES!!! 💖💖💖';
+            yesBtn.textContent = 'Chắc chắn có!!! 💖💖💖';
             yesBtn.style.animation = 'pulse 0.5s infinite';
         } else if (noClickCount === 3) {
             // Third click - even tinier
-            noBtn.textContent = "No 😢";
+            noBtn.textContent = "ko (sao vợ nỡ thế??)";
             noBtn.style.padding = '3px 6px';
             noBtn.style.fontSize = '6px';
             noBtn.style.opacity = '0.5';
-            yesBtn.textContent = 'YESSS!!!! 💖💖💖💖';
+            yesBtn.textContent = 'Có ạaaa!!!! 💖💖💖💖';
         } else if (noClickCount === 4) {
             // Fourth click - barely visible
-            noBtn.textContent = "no";
+            noBtn.textContent = "ko";
             noBtn.style.padding = '2px 4px';
             noBtn.style.fontSize = '4px';
             noBtn.style.opacity = '0.3';
-            yesBtn.textContent = 'Click YES already! 💖💖💖💖💖';
+            yesBtn.textContent = 'Vợ có! 💖💖💖💖💖';
         } else {
             // Fifth click - disappear completely
             noBtn.style.display = 'none';
-            yesBtn.textContent = 'YES (only option now 😏💖)';
+            yesBtn.textContent = 'Có (vợ không thoát được chồng đâu 😏💖)';
         }
     });
     
