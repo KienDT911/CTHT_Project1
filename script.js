@@ -7,6 +7,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const noBtn = document.getElementById('noBtn');
     const valentinePage = document.getElementById('valentinePage');
     
+    // Authentication elements
+    const authPage = document.getElementById('authPage');
+    const letterPage = document.getElementById('letterPage');
+    const wifeAuthBtn = document.getElementById('wifeAuthBtn');
+    const authBox = document.getElementById('authBox');
+    const authBtns = document.querySelectorAll('.auth-btn');
+    const authMessage = document.getElementById('authMessage');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    
+    // Show auth box when Wife Authentication button is clicked
+    wifeAuthBtn.addEventListener('click', function() {
+        wifeAuthBtn.style.display = 'none';
+        authBox.style.display = 'block';
+        authBox.style.animation = 'authFadeIn 0.5s ease';
+    });
+    
+    // All 4 answers are correct
+    authBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const answer = this.dataset.answer;
+            
+            this.classList.add('correct');
+            authMessage.textContent = `Đúng rùi - ${answer} là vợ iuuu của Trung Kiên 💕`;
+            authMessage.style.color = '#4caf50';
+            
+            // Set welcome message
+            welcomeMessage.textContent = `💌 Đây là thư dành cho ${answer} 💌`;
+            
+            // Auto transition to envelope after 1.5 seconds
+            setTimeout(() => {
+                authPage.style.opacity = '0';
+                authPage.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    authPage.style.display = 'none';
+                    letterPage.style.display = 'flex';
+                }, 500);
+            }, 1500);
+        });
+    });
+    
     let noClickCount = 0;
     let isOpen = false;
     

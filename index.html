@@ -8,8 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Authentication Question -->
+    <div class="auth-container" id="authPage">
+        <button class="wife-auth-btn" id="wifeAuthBtn">💌 Wife Authentication 💌</button>
+        
+        <div class="auth-box" id="authBox" style="display: none;">
+            <h2 class="auth-title">💕 Xác nhận danh tính 💕</h2>
+            <p class="auth-question">Bạn là ai?</p>
+            <div class="auth-options">
+                <button class="auth-btn" data-answer="Chu Thi Hien Tam">Chu Thi Hien Tam</button>
+                <button class="auth-btn" data-answer="Sunie">Sunie</button>
+                <button class="auth-btn" data-answer="Canh chua">Canh chua</button>
+                <button class="auth-btn" data-answer="Thịt kho">Thịt kho</button>
+            </div>
+            <p class="auth-message" id="authMessage"></p>
+        </div>
+    </div>
+
     <!-- Letter Page -->
-    <div class="container" id="letterPage">
+    <div class="container" id="letterPage" style="display: none;">
+        <h2 class="welcome-message" id="welcomeMessage"></h2>
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope" id="envelope">
                 <div class="envelope-flap"></div>
